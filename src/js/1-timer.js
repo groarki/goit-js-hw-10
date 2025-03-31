@@ -11,6 +11,7 @@ let userSelectedDate;
 let deltaTime;
 let timerID;
 btn.disabled = true;
+input.disabled = false;
 
 const options = {
   enableTime: true,
@@ -19,9 +20,8 @@ const options = {
   minuteIncrement: 1,
   // minDate: 'today',
   onClose(selectedDates) {
-    if (selectedDates[0] < currDate) {
+    if (selectedDates[0] < Date.now()) {
       iziToast.error({
-        title: 'Error',
         message: 'Please choose a date in the future',
         position: 'topRight',
       });
@@ -56,9 +56,9 @@ function convertMs(ms) {
 }
 
 const days = document.querySelector('[data-days');
-const hours = document.querySelector('[data-hours');
-const minutes = document.querySelector('[data-minutes');
-const seconds = document.querySelector('[data-seconds');
+const hours = document.querySelector('[data-hours]');
+const minutes = document.querySelector('[data-minutes]');
+const seconds = document.querySelector('[data-seconds]');
 
 btn.addEventListener('click', submitHandler);
 
@@ -69,6 +69,7 @@ function addLeadingZero(num) {
 
 function submitHandler() {
   btn.disabled = true;
+  input.disabled = true;
   startTimer();
 }
 
@@ -80,8 +81,8 @@ function startTimer() {
     if (deltaTime <= 0) {
       clearInterval(timerID);
       update(0, 0, 0, 0);
-
       btn.disabled = false;
+      input.disabled = false;
       return;
     }
 
