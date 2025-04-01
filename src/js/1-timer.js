@@ -4,7 +4,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const btn = document.querySelector('.button');
-const currDate = Date.now();
+const input = document.querySelector('#datetime-picker');
 const selectedDates = [];
 
 let userSelectedDate;
@@ -32,7 +32,6 @@ const options = {
   },
 };
 
-const input = document.querySelector('#datetime-picker');
 const fp = flatpickr(input, options);
 // console.log(fp);
 
